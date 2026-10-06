@@ -66,7 +66,7 @@ header .inner {
 
 .brand img {
   display: block;
-  max-width: min(var(--logo-max-width), 20vw);
+  max-width: min(var(--logo-max-width), 35vw);
   max-height: var(--logo-max-height);
   object-fit: contain;
 }

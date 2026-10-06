@@ -36,3 +36,5 @@ const QUESTIONS = [
 // 공식 기관 로고를 assets/org-logo.png에 넣은 후 경로를 지정하세요.
 // 예: const ORG_LOGO = 'assets/org-logo.png';
 const ORG_LOGO = 'assets/nifns.png';
+
+const COMPLETION_IMAGE = 'assets/gift.png';
