@@ -1,0 +1,25 @@
+/* 오답/완료 팝업 전용: 기존 메인 디자인은 style.css에서 유지합니다. */
+.popup-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* 완료 그림 크기: max-height를 바꿔 조절하세요. */
+.completion-image {
+  display: block;
+  width: 100%;
+  max-height: 280px;
+  margin: 0 auto 20px;
+  object-fit: contain;
+}
+
+.completion-image[hidden] {
+  display: none;
+}
+
+.prize-message {
+  margin: 12px 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--green, #006348);
+}

@@ -5,13 +5,6 @@ const $ = (id) => document.getElementById(id);
 let current = 0;
 let answers = [];
 
-// 선택한 답변을 채점합니다.
-function scoreQuiz(questions, selected) {
-  return questions.reduce((score, question, index) => {
-    return score + (selected[index] === question.answer ? 1 : 0);
-  }, 0);
-}
-
 // 현재 문항과 보기를 화면에 표시합니다.
 function render() {
   const question = QUESTIONS[current];
@@ -56,7 +49,7 @@ function render() {
 
   $('back').hidden = current === 0;
   $('next').textContent = current === QUESTIONS.length - 1
-    ? '결과 확인하기'
+    ? '참여 완료하기'
     : '다음 문항';
   $('next').disabled = answers[current] === undefined;
 }
@@ -78,41 +71,21 @@ function start() {
   $('quiz').focus();
 }
 
-// 모든 문항을 채점하고 결과 팝업을 표시합니다.
+// 모든 문항의 정답을 맞힌 경우에만 완료 팝업을 표시합니다.
 function finish() {
-  const hasUnansweredQuestion = QUESTIONS.some((_, index) => {
-    return answers[index] === undefined;
+  const allCorrect = QUESTIONS.every((question, index) => {
+    return answers[index] === question.answer;
   });
 
-  if (answers.length !== QUESTIONS.length || hasUnansweredQuestion) {
-    return;
+  if (allCorrect) {
+    $('result').showModal();
   }
+}
 
-  const score = scoreQuiz(QUESTIONS, answers);
-  $('score').textContent = score;
-  document.querySelector('.score small').textContent = ` / ${QUESTIONS.length}문항 정답`;
-  $('message').textContent = score === QUESTIONS.length
-    ? '모두 맞혔어요! 건강한 식생활을 함께 실천해요.'
-    : '참여해 주셔서 감사합니다! 정답을 함께 알아봐요.';
-  $('review').replaceChildren();
-
-  QUESTIONS.forEach((question, index) => {
-    const article = document.createElement('article');
-    const title = document.createElement('b');
-    const isCorrect = answers[index] === question.answer;
-    title.textContent = `${index + 1}번 · ${isCorrect ? '정답' : '오답'}`;
-
-    const answer = document.createElement('p');
-    answer.textContent = `정답: ${question.options[question.answer]}`;
-
-    const explanation = document.createElement('p');
-    explanation.textContent = question.explanation;
-
-    article.append(title, answer, explanation);
-    $('review').append(article);
-  });
-
-  $('result').showModal();
+// 오답 팝업을 닫고 현재 문항에 다시 도전합니다.
+function retryQuestion() {
+  $('wrongAnswer').close();
+  $('options').children[0].focus();
 }
 
 // 버튼 동작
@@ -121,6 +94,15 @@ $('home').onclick = showHome;
 
 $('next').onclick = () => {
   if (answers[current] === undefined) {
+    return;
+  }
+
+  // 오답이면 선택을 초기화하고 같은 문항에 머무릅니다.
+  // 횟수 제한 없이 정답을 맞힐 때까지 다시 풀 수 있습니다.
+  if (answers[current] !== QUESTIONS[current].answer) {
+    answers[current] = undefined;
+    render();
+    $('wrongAnswer').showModal();
     return;
   }
 
@@ -141,10 +123,12 @@ $('back').onclick = () => {
   }
 };
 
-$('retry').onclick = () => {
-  $('result').close();
-  start();
-};
+$('tryAgain').onclick = retryQuestion;
+
+$('wrongAnswer').addEventListener('cancel', (event) => {
+  event.preventDefault();
+  retryQuestion();
+});
 
 $('close').onclick = () => {
   $('result').close();
@@ -173,4 +157,19 @@ if (ORG_LOGO) {
   };
 
   image.src = ORG_LOGO;
+}
+
+// 완료 그림 설정 (questions.js에 설정이 없어도 퀴즈는 동작합니다.)
+if (typeof COMPLETION_IMAGE !== 'undefined' && COMPLETION_IMAGE) {
+  const image = $('completionImage');
+
+  image.onload = () => {
+    image.hidden = false;
+  };
+
+  image.onerror = () => {
+    image.hidden = true;
+  };
+
+  image.src = COMPLETION_IMAGE;
 }

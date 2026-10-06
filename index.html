@@ -6,6 +6,8 @@
     <meta name="description" content="2026 익산 NS푸드페스타 식생활안전관리원 식생활 퀴즈 캠페인">
     <title>삼삼한 밥상 퀴즈 | 2026 NS푸드페스타</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 오답 및 참여 완료 팝업 전용 스타일 -->
+    <link rel="stylesheet" href="popup.css">
   </head>
   <body>
     <!-- 상단 영역: 기관 로고(왼쪽)와 행사명(오른쪽) -->
@@ -29,7 +31,6 @@
       <section class="landing" id="landing" aria-label="삼삼한 밥상 퀴즈 안내">
         <!-- 포스터 위치/높이: style.css의 .poster와 --poster-height 수정
              포스터 교체: 아래 src 경로 변경
->>>>>>> 6e0404fab068e30a6ce315dc3d65bb34f129143d
              이미지 설명: alt를 새 포스터 내용에 맞게 수정 -->
         <div class="poster">
           <img src="assets/poster3.png" alt="NS푸드페스타 2026 익산 공식 포스터. 10월 16일부터 17일까지, 하림 퍼스트키친." width="443" height="627">
@@ -64,22 +65,26 @@
     </main>
     <!-- 하단 운영기관/참여 안내 문구 -->
     <!--<footer>캠페인 운영 · 식생활안전관리원<br>이름이나 연락처를 입력하지 않고 참여할 수 있어요.</footer>-->
-    <!-- 최종 결과 팝업: 채점 내용은 app.js가 채웁니다. -->
+    <!-- 오답 팝업: 닫으면 같은 문항을 다시 풀 수 있습니다. -->
+    <dialog id="wrongAnswer" aria-labelledby="wrongTitle">
+      <div class="result-top">
+        <h2 id="wrongTitle">다시 도전해 주세요!</h2>
+        <p>아쉽지만 정답이 아니에요.<br>다른 보기를 선택해 보세요!</p>
+      </div>
+      <button class="primary popup-button" id="tryAgain">다시 풀기</button>
+    </dialog>
+
+    <!-- 최종 완료 팝업: 점수 없이 상품 수령 안내만 표시 -->
     <dialog id="result" aria-labelledby="resultTitle">
       <div class="result-top">
-        <span class="tag">퀴즈 참여 완료</span>
-        <h2 id="resultTitle">수고하셨습니다!</h2>
-        <div class="score">
-          <span id="score"></span>
-          <small> / 3문항 정답</small>
-        </div>
-        <p id="message"></p>
+        <!-- 완료 그림: questions.js의 COMPLETION_IMAGE에서 파일 경로 지정
+             예: assets/complete.png. 지정하지 않으면 이미지 영역은 숨깁니다. -->
+        <img id="completionImage" class="completion-image" alt="퀴즈 참여 완료 축하 이미지" hidden>
+        <!-- 아래 제목과 상품 안내 문구를 직접 수정하세요. -->
+        <h2 id="resultTitle">고생하셨습니다.</h2>
+        <p class="prize-message">상품을 받아가세요!</p>
       </div>
-      <div class="review" id="review"></div>
-      <div class="result-actions">
-        <button class="primary" id="retry">다시 도전하기</button>
-        <button class="secondary" id="close">메인으로 돌아가기</button>
-      </div>
+      <button class="secondary popup-button" id="close">메인으로 돌아가기</button>
     </dialog>
     <script src="questions.js"></script>
     <script src="app.js"></script>
