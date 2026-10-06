@@ -48,19 +48,19 @@ header {
 /* 상단 로고/행사명 배치: 로고 왼쪽, 행사명 오른쪽
    좌우를 바꾸려면 flex-direction: row-reverse; 를 추가하세요. */
 header .inner {
-  max-width: 760px;
+  max-width: 380px;
   margin: auto;
-  padding: 12px 20px;
+  padding: 10px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 6px;
 }
 
 .brand {
   min-width: 0;
-  font-weight: 800;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 10px;
   color: var(--green);
 }
 
