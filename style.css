@@ -1,5 +1,24 @@
-/* 기본 색상과 공통 스타일 */
+/* ==================================================
+   PC 화면용 수정 안내
+   - 페이지는 브라우저 너비 100%를 사용합니다.
+   - 아래 :root 설정값으로 여백, 로고, 포스터 위치를 수정하세요.
+   - 로고는 header .inner, 포스터는 .poster에서 배치합니다.
+   ================================================== */
 :root {
+  /* 전체 화면 좌우 여백: 줄이면 내용이 더 넓어집니다. */
+  --page-padding: clamp(24px, 3vw, 64px);
+  /* 메인 왼쪽 문구와 오른쪽 포스터의 너비 비율 */
+  --intro-width: 1.15fr;
+  --poster-width: 1fr;
+  /* 포스터 위치: start=왼쪽, center=가운데, end=오른쪽 */
+  --poster-align: center;
+  /* 포스터 위치: flex-start=위, center=가운데, flex-end=아래 */
+  --poster-vertical-align: center;
+  /* 포스터 최대 너비, 로고 최대 너비와 높이 */
+  --poster-max-width: 520px;
+  --logo-max-width: 340px;
+  --logo-max-height: 80px;
+  /* 브랜드 색상 */
   --ink: #14233b;
   --green: #006348;
   --yellow: #ffe04f;
@@ -14,7 +33,7 @@ body {
   background: #f3f6f5;
   color: var(--ink);
   font-family: system-ui,-apple-system,'Malgun Gothic',sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.6;
 }
 
@@ -33,10 +52,13 @@ header {
   border-bottom: 1px solid #dde5e2;
 }
 
+/* 로고와 행사명 위치
+   HTML에서 .brand가 왼쪽, .event-mark가 오른쪽입니다.
+   좌우 교체: 아래에 flex-direction: row-reverse; 를 추가하세요. */
 header .inner {
-  max-width: 1040px;
+  width: 100%;
   margin: auto;
-  padding: 22px 28px;
+  padding: 24px var(--page-padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,18 +67,18 @@ header .inner {
 
 .brand {
   font-weight: 800;
-  font-size: 22px;
+  font-size: 30px;
   color: var(--green);
 }
 
 .brand img {
-  max-width: 240px;
-  max-height: 55px;
+  max-width: var(--logo-max-width);
+  max-height: var(--logo-max-height);
   object-fit: contain;
 }
 
 .event-mark {
-  font-size: 14px;
+  font-size: 18px;
   text-align: right;
   font-weight: 700;
 }
@@ -68,22 +90,27 @@ header .inner {
 }
 
 main {
-  max-width: 1040px;
-  margin: 40px auto;
-  padding: 0 28px;
+  width: 100%;
+  margin: 28px 0;
+  padding: 0 var(--page-padding);
 }
 
+/* 메인 배치: 문구는 왼쪽, 포스터는 오른쪽
+   좌우 교체: .intro에 grid-column: 2; grid-row: 1;
+              .poster에 grid-column: 1; grid-row: 1; 을 추가하세요. */
 .landing {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: var(--intro-width) var(--poster-width);
+  min-height: calc(100dvh - 240px);
   background: white;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 12px 40px #18382c0b;
 }
 
+/* 메인 문구 영역: padding으로 내부 여백을 조절합니다. */
 .intro {
-  padding: 44px 40px;
+  padding: clamp(32px, 4vw, 76px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +121,7 @@ main {
   font-weight: 800;
   letter-spacing: .12em;
   color: var(--green);
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .tag {
@@ -102,12 +129,12 @@ main {
   color: var(--green);
   border-radius: 100px;
   padding: 6px 14px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 h1 {
-  font-size: clamp(34px,5vw,54px);
+  font-size: clamp(48px, 4.5vw, 88px);
   letter-spacing: -.06em;
   line-height: 1.2;
   margin: 22px 0 20px;
@@ -125,17 +152,17 @@ h1 em {
 
 .facts {
   display: flex;
-  gap: 22px;
+  gap: 48px;
   margin: 8px 0 28px;
 }
 
 .facts b {
   display: block;
-  font-size: 23px;
+  font-size: 36px;
 }
 
 .facts span {
-  font-size: 14px;
+  font-size: 18px;
   color: #66766f;
 }
 
@@ -146,31 +173,32 @@ h1 em {
   border-radius: 12px;
   padding: 16px 24px;
   font-weight: 800;
-  min-height: 56px;
+  min-height: 72px;
 }
 
 .intro .primary {
   width: 100%;
 }
 
+/* 포스터 영역: 배경색과 여백, 정렬을 조절합니다. */
 .poster {
   background: var(--yellow);
-  padding: 26px;
+  padding: 32px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: var(--poster-vertical-align);
+  justify-content: var(--poster-align);
 }
 
 .poster img {
   display: block;
   width: 100%;
-  max-width: 360px;
+  max-width: var(--poster-max-width);
   height: auto;
   border-radius: 4px;
 }
 
 .small {
-  font-size: 14px;
+  font-size: 18px;
   color: #6a786f;
 }
 
@@ -179,10 +207,11 @@ h1 em {
 }
 
 .quiz {
-  max-width: 680px;
+  width: 100%;
+  min-height: calc(100dvh - 240px);
   margin: auto;
   background: white;
-  padding: 36px;
+  padding: clamp(32px, 4vw, 72px);
   border-radius: 24px;
   box-shadow: 0 12px 40px #18382c0b;
 }
@@ -216,15 +245,18 @@ h1 em {
 }
 
 h2 {
-  font-size: 28px;
+  font-size: clamp(32px, 3vw, 54px);
   letter-spacing: -.04em;
   line-height: 1.45;
   margin: 12px 0 26px;
 }
 
+/* 보기 버튼을 가로로 같은 너비로 배치합니다. */
 .options {
   display: grid;
-  gap: 12px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 24px;
 }
 
 .option {
@@ -233,7 +265,11 @@ h2 {
   border: 2px solid #e0e7e2;
   border-radius: 12px;
   background: white;
-  padding: 16px;
+  padding: 28px;
+  min-width: 0;
+  min-height: 190px;
+  overflow-wrap: anywhere;
+  font-size: clamp(20px, 1.8vw, 30px);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -244,8 +280,8 @@ h2 {
   display: grid;
   place-items: center;
   background: #f0f4f1;
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   border-radius: 9px;
   flex-shrink: 0;
   font-weight: 800;
@@ -264,7 +300,7 @@ h2 {
 .nav {
   display: flex;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 40px;
 }
 
 .secondary {
@@ -277,21 +313,22 @@ h2 {
 }
 
 .nav .primary {
-  flex: 1;
+  flex: 0 1 420px;
+  margin-left: auto;
 }
 
-button: disabled {
+button:disabled {
   cursor: default;
   background: #e6ebe7;
   color: #7e8a82;
 }
 
 footer {
-  max-width: 1040px;
+  width: 100%;
   margin: 28px auto;
   padding: 0 28px;
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   color: #627268;
 }
 
@@ -299,14 +336,14 @@ dialog {
   border: 0;
   border-radius: 24px;
   padding: 30px;
-  max-width: 480px;
+  max-width: 760px;
   width: calc(100% - 36px);
   color: var(--ink);
   max-height: 90dvh;
   overflow: auto;
 }
 
-dialog: :backdrop {
+dialog::backdrop {
   background: #11261dcc;
   backdrop-filter: blur(4px);
 }
@@ -342,11 +379,11 @@ dialog: :backdrop {
 
 .review p {
   margin: 4px 0;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .review b {
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .result-actions {
@@ -356,62 +393,6 @@ dialog: :backdrop {
 
 [hidden] {
   display: none!important;
-}
-
-@media(max-width:650px) {
-  header .inner {
-    padding: 16px 20px;
-  }
-
-  .brand {
-    font-size: 19px;
-  }
-
-  .event-mark {
-    font-size: 12px;
-  }
-
-  main {
-    padding: 0 16px;
-    margin: 20px auto;
-  }
-
-  .landing {
-    grid-template-columns: 1fr;
-  }
-
-  .intro {
-    padding: 30px 24px;
-  }
-
-  .poster {
-    padding: 20px;
-  }
-
-  .poster img {
-    max-width: 300px;
-  }
-
-  .quiz {
-    padding: 26px 22px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  .facts {
-    gap: 30px;
-  }
-
-  footer {
-    padding: 0 20px;
-  }
-
-  .nav {
-    gap: 8px;
-  }
-
 }
 
 /* 결과 팝업 제목 */

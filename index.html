@@ -8,24 +8,34 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <!-- 상단 영역: 기관 로고(왼쪽)와 행사명(오른쪽) -->
     <header>
       <div class="inner">
+        <!-- 기관 로고 위치: style.css의 header .inner와 .brand에서 조절
+             로고 파일: questions.js의 ORG_LOGO에 assets/org-logo.png 지정
+             orgLogo/orgName의 id는 JavaScript에서 사용하므로 유지하세요. -->
         <div class="brand">
           <img id="orgLogo" alt="식생활안전관리원" hidden>
           <span id="orgName">식생활안전관리원</span>
         </div>
+        <!-- 오른쪽 행사명: 아래 문구를 직접 수정할 수 있습니다. -->
         <div class="event-mark">NS FOOD FESTA<span>2026 · 익산</span>
         </div>
       </div>
     </header>
     <main>
+      <!-- 메인 화면: .intro는 문구 영역, .poster는 포스터 영역 -->
       <section class="landing" id="landing">
+        <!-- 메인 문구 위치/여백: style.css의 .intro에서 조절 -->
         <div class="intro">
+          <!-- 행사 이름 배지 -->
           <span class="tag">2026 익산 NS푸드페스타</span>
+          <!-- 메인 제목: br은 줄바꿈, em은 초록색 강조 -->
           <h1>맛있는 축제,<br>
             <em>건강한 식생활!</em>
           </h1>
           <p>우리 가족의 건강한 식생활,<br>퀴즈로 함께 알아볼까요?</p>
+          <!-- 참여 안내: 문항 수와 예상 시간 수정 -->
           <div class="facts">
             <div>
               <b>3문항</b>
@@ -36,13 +46,19 @@
               <span>간편하게 참여</span>
             </div>
           </div>
+          <!-- 시작 버튼: 글자는 수정 가능, id="start"는 유지 -->
           <button class="primary" id="start">퀴즈 시작하기</button>
           <p class="small">퀴즈를 모두 풀면 정답 개수를 확인할 수 있어요.</p>
         </div>
+        <!-- 포스터 위치: style.css의 .poster와 :root 설정값에서 조절
+             포스터 교체: 아래 src를 새 이미지 경로로 변경
+             포스터 크기: --poster-max-width 설정값 변경
+             이미지 설명: alt를 새 포스터 내용에 맞게 수정 -->
         <div class="poster">
           <img src="assets/poster.png" alt="NS푸드페스타 2026 익산 공식 포스터. 10월 16일부터 17일까지, 하림 퍼스트키친." width="443" height="627">
         </div>
       </section>
+      <!-- 퀴즈 화면: 문항은 questions.js에서 수정, 아래 id는 유지 -->
       <section class="quiz" id="quiz" hidden aria-labelledby="question" tabindex="-1">
         <div class="quiz-head">
           <b>식생활 퀴즈</b>
@@ -60,7 +76,9 @@
         </div>
       </section>
     </main>
+    <!-- 하단 운영기관/참여 안내 문구 -->
     <footer>캠페인 운영 · 식생활안전관리원<br>이름이나 연락처를 입력하지 않고 참여할 수 있어요.</footer>
+    <!-- 최종 결과 팝업: 채점 내용은 app.js가 채웁니다. -->
     <dialog id="result" aria-labelledby="resultTitle">
       <div class="result-top">
         <span class="tag">퀴즈 참여 완료</span>
