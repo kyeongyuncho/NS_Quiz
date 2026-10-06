@@ -1,0 +1,420 @@
+/* 기본 색상과 공통 스타일 */
+:root {
+  --ink: #14233b;
+  --green: #006348;
+  --yellow: #ffe04f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f6f5;
+  color: var(--ink);
+  font-family: system-ui,-apple-system,'Malgun Gothic',sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button: focus-visible,a:focus-visible {
+  outline: 3px solid #d77d00;
+  outline-offset: 4px;
+}
+
+header {
+  background: white;
+  border-bottom: 1px solid #dde5e2;
+}
+
+header .inner {
+  max-width: 1040px;
+  margin: auto;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--green);
+}
+
+.brand img {
+  max-width: 240px;
+  max-height: 55px;
+  object-fit: contain;
+}
+
+.event-mark {
+  font-size: 14px;
+  text-align: right;
+  font-weight: 700;
+}
+
+.event-mark span {
+  display: block;
+  color: #66766f;
+  font-weight: 500;
+}
+
+main {
+  max-width: 1040px;
+  margin: 40px auto;
+  padding: 0 28px;
+}
+
+.landing {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px #18382c0b;
+}
+
+.intro {
+  padding: 44px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: var(--green);
+  font-size: 14px;
+}
+
+.tag {
+  background: #e9f5ee;
+  color: var(--green);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(34px,5vw,54px);
+  letter-spacing: -.06em;
+  line-height: 1.2;
+  margin: 22px 0 20px;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.intro p {
+  margin: 0 0 22px;
+  color: #526258;
+}
+
+.facts {
+  display: flex;
+  gap: 22px;
+  margin: 8px 0 28px;
+}
+
+.facts b {
+  display: block;
+  font-size: 23px;
+}
+
+.facts span {
+  font-size: 14px;
+  color: #66766f;
+}
+
+.primary {
+  border: 0;
+  background: var(--green);
+  color: white;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-weight: 800;
+  min-height: 56px;
+}
+
+.intro .primary {
+  width: 100%;
+}
+
+.poster {
+  background: var(--yellow);
+  padding: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster img {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.small {
+  font-size: 14px;
+  color: #6a786f;
+}
+
+.intro .small {
+  margin: 14px 0 0;
+}
+
+.quiz {
+  max-width: 680px;
+  margin: auto;
+  background: white;
+  padding: 36px;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px #18382c0b;
+}
+
+.quiz-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.text-button {
+  border: 0;
+  background: transparent;
+  color: #536359;
+  padding: 8px;
+}
+
+.progress {
+  height: 7px;
+  background: #e8eeeb;
+  border-radius: 9px;
+  margin: 18px 0 30px;
+  overflow: hidden;
+}
+
+.progress div {
+  height: 100%;
+  background: var(--green);
+  transition: width .2s;
+}
+
+h2 {
+  font-size: 28px;
+  letter-spacing: -.04em;
+  line-height: 1.45;
+  margin: 12px 0 26px;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option {
+  width: 100%;
+  text-align: left;
+  border: 2px solid #e0e7e2;
+  border-radius: 12px;
+  background: white;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+}
+
+.option .letter {
+  display: grid;
+  place-items: center;
+  background: #f0f4f1;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  font-weight: 800;
+}
+
+.option[aria-pressed=true] {
+  border-color: var(--green);
+  background: #eff8f2;
+}
+
+.option[aria-pressed=true] .letter {
+  background: var(--green);
+  color: white;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.secondary {
+  background: white;
+  border: 1px solid #d4ded7;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.nav .primary {
+  flex: 1;
+}
+
+button: disabled {
+  cursor: default;
+  background: #e6ebe7;
+  color: #7e8a82;
+}
+
+footer {
+  max-width: 1040px;
+  margin: 28px auto;
+  padding: 0 28px;
+  text-align: center;
+  font-size: 14px;
+  color: #627268;
+}
+
+dialog {
+  border: 0;
+  border-radius: 24px;
+  padding: 30px;
+  max-width: 480px;
+  width: calc(100% - 36px);
+  color: var(--ink);
+  max-height: 90dvh;
+  overflow: auto;
+}
+
+dialog: :backdrop {
+  background: #11261dcc;
+  backdrop-filter: blur(4px);
+}
+
+.result-top {
+  text-align: center;
+}
+
+.result-top .score {
+  font-size: 60px;
+  color: var(--green);
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 14px 0;
+}
+
+.score small {
+  font-size: 24px;
+  color: #66766f;
+}
+
+.review {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.review article {
+  padding: 14px;
+  background: #f2f6f3;
+  border-radius: 10px;
+}
+
+.review p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.review b {
+  font-size: 15px;
+}
+
+.result-actions {
+  display: grid;
+  gap: 10px;
+}
+
+[hidden] {
+  display: none!important;
+}
+
+@media(max-width:650px) {
+  header .inner {
+    padding: 16px 20px;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .event-mark {
+    font-size: 12px;
+  }
+
+  main {
+    padding: 0 16px;
+    margin: 20px auto;
+  }
+
+  .landing {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    padding: 30px 24px;
+  }
+
+  .poster {
+    padding: 20px;
+  }
+
+  .poster img {
+    max-width: 300px;
+  }
+
+  .quiz {
+    padding: 26px 22px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .facts {
+    gap: 30px;
+  }
+
+  footer {
+    padding: 0 20px;
+  }
+
+  .nav {
+    gap: 8px;
+  }
+
+}
+
+/* 결과 팝업 제목 */
+#resultTitle {
+  margin: 18px 0 0;
+}

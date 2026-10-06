@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="2026 익산 NS푸드페스타 식생활안전관리원 식생활 퀴즈 캠페인">
+    <title>식생활 퀴즈 | 2026 NS푸드페스타</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+        <div class="brand">
+          <img id="orgLogo" alt="식생활안전관리원" hidden>
+          <span id="orgName">식생활안전관리원</span>
+        </div>
+        <div class="event-mark">NS FOOD FESTA<span>2026 · 익산</span>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="landing" id="landing">
+        <div class="intro">
+          <span class="tag">2026 익산 NS푸드페스타</span>
+          <h1>맛있는 축제,<br>
+            <em>건강한 식생활!</em>
+          </h1>
+          <p>우리 가족의 건강한 식생활,<br>퀴즈로 함께 알아볼까요?</p>
+          <div class="facts">
+            <div>
+              <b>3문항</b>
+              <span>식생활 퀴즈</span>
+            </div>
+            <div>
+              <b>약 1분</b>
+              <span>간편하게 참여</span>
+            </div>
+          </div>
+          <button class="primary" id="start">퀴즈 시작하기</button>
+          <p class="small">퀴즈를 모두 풀면 정답 개수를 확인할 수 있어요.</p>
+        </div>
+        <div class="poster">
+          <img src="assets/poster.png" alt="NS푸드페스타 2026 익산 공식 포스터. 10월 16일부터 17일까지, 하림 퍼스트키친." width="443" height="627">
+        </div>
+      </section>
+      <section class="quiz" id="quiz" hidden aria-labelledby="question" tabindex="-1">
+        <div class="quiz-head">
+          <b>식생활 퀴즈</b>
+          <button class="text-button" id="home">처음으로</button>
+        </div>
+        <div class="progress" role="progressbar" aria-label="문항 진행" aria-valuemin="0" aria-valuemax="3" aria-valuenow="1">
+          <div id="bar"></div>
+        </div>
+        <div class="eyebrow" id="counter"></div>
+        <h2 id="question"></h2>
+        <div class="options" id="options" role="group" aria-labelledby="question"></div>
+        <div class="nav">
+          <button class="secondary" id="back">이전</button>
+          <button class="primary" id="next" disabled>다음 문항</button>
+        </div>
+      </section>
+    </main>
+    <footer>캠페인 운영 · 식생활안전관리원<br>이름이나 연락처를 입력하지 않고 참여할 수 있어요.</footer>
+    <dialog id="result" aria-labelledby="resultTitle">
+      <div class="result-top">
+        <span class="tag">퀴즈 참여 완료</span>
+        <h2 id="resultTitle">수고하셨습니다!</h2>
+        <div class="score">
+          <span id="score"></span>
+          <small> / 3문항 정답</small>
+        </div>
+        <p id="message"></p>
+      </div>
+      <div class="review" id="review"></div>
+      <div class="result-actions">
+        <button class="primary" id="retry">다시 도전하기</button>
+        <button class="secondary" id="close">메인으로 돌아가기</button>
+      </div>
+    </dialog>
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
