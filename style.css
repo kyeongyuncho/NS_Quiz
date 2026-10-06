@@ -7,7 +7,7 @@
 :root {
   --ink: #14233b;
   --green: #006348;
-  --yellow: #ffe04f;
+  --yellow: #ffd392;
   /* 포스터 영역 높이: 60dvh = 현재 화면 높이의 약 60% */
   --poster-height: 60dvh;
   /* 기관 로고 최대 크기 */
