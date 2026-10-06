@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="2026 익산 NS푸드페스타 식생활안전관리원 식생활 퀴즈 캠페인">
-    <title>식생활 퀴즈 | 2026 NS푸드페스타</title>
+    <title>삼삼한 밥상 퀴즈 | 2026 NS푸드페스타</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -24,44 +24,28 @@
       </div>
     </header>
     <main>
-      <!-- 메인 화면: .intro는 문구 영역, .poster는 포스터 영역 -->
-      <section class="landing" id="landing">
-        <!-- 메인 문구 위치/여백: style.css의 .intro에서 조절 -->
-        <div class="intro">
-          <!-- 행사 이름 배지 -->
-          <span class="tag">2026 익산 NS푸드페스타</span>
-          <!-- 메인 제목: br은 줄바꿈, em은 초록색 강조 -->
-          <h1>케어루 & 나슈로와,<br>
-            <em>함께 하는 '삼삼한 밥상' 퀴즈</em>
-          </h1>
-          <p>우리 가족의 건강한 식생활,<br>퀴즈로 함께 알아볼까요?</p>
-          <!-- 참여 안내: 문항 수와 예상 시간 수정 -->
-          <div class="facts">
-            <div>
-              <b>3문항</b>
-              <span>식생활 퀴즈</span>
-            </div>
-            <div>
-              <b>약 1분</b>
-              <span>간편하게 참여</span>
-            </div>
-          </div>
-          <!-- 시작 버튼: 글자는 수정 가능, id="start"는 유지 -->
-          <button class="primary" id="start">퀴즈 시작하기</button>
-          <p class="small">퀴즈를 모두 풀면 정답 개수를 확인할 수 있어요.</p>
-        </div>
-        <!-- 포스터 위치: style.css의 .poster와 :root 설정값에서 조절
-             포스터 교체: 아래 src를 새 이미지 경로로 변경
-             포스터 크기: --poster-max-width 설정값 변경
+      <!-- 모바일 메인 화면: 위쪽 포스터, 아래쪽 시작 버튼 -->
+      <section class="landing" id="landing" aria-label="삼삼한 밥상 퀴즈 안내">
+        <!-- 포스터 위치/높이: style.css의 .poster와 --poster-height 수정
+             포스터 교체: 아래 src 경로 변경
              이미지 설명: alt를 새 포스터 내용에 맞게 수정 -->
         <div class="poster">
           <img src="assets/poster3.png" alt="NS푸드페스타 2026 익산 공식 포스터. 10월 16일부터 17일까지, 하림 퍼스트키친." width="443" height="627">
+        </div>
+        <!-- 하단 시작 영역: 여백과 글자 크기는 style.css의 .intro에서 수정 -->
+        <div class="intro">
+          <span class="tag">식생활안전관리원과 함께하는</span>
+          <!-- 메인 제목: 문구를 직접 수정할 수 있습니다. -->
+          <h1>삼삼한 밥상 퀴즈</h1>
+          <p>3문항을 풀고 정답 개수를 확인해 보세요!</p>
+          <!-- 시작 버튼: 문구는 수정 가능, id="start"는 유지하세요. -->
+          <button class="primary" id="start">삼삼한 밥상 퀴즈 풀기!</button>
         </div>
       </section>
       <!-- 퀴즈 화면: 문항은 questions.js에서 수정, 아래 id는 유지 -->
       <section class="quiz" id="quiz" hidden aria-labelledby="question" tabindex="-1">
         <div class="quiz-head">
-          <b>식생활 퀴즈</b>
+          <b>삼삼한 밥상 퀴즈</b>
           <button class="text-button" id="home">처음으로</button>
         </div>
         <div class="progress" role="progressbar" aria-label="문항 진행" aria-valuemin="0" aria-valuemax="3" aria-valuenow="1">
