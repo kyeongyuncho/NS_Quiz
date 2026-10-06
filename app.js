@@ -48,9 +48,7 @@ function render() {
   });
 
   $('back').hidden = current === 0;
-  $('next').textContent = current === QUESTIONS.length - 1
-    ? '참여 완료하기'
-    : '다음 문항';
+  $('next').textContent = '정답 확인하기';
   $('next').disabled = answers[current] === undefined;
 }
 
@@ -106,6 +104,23 @@ $('next').onclick = () => {
     return;
   }
 
+  // 정답이면 먼저 해설을 보여줍니다. 확인 후에만 다음으로 이동합니다.
+  const explanation = QUESTIONS[current].explanation;
+  $('correctExplanation').textContent = explanation || '잘 맞혔어요!';
+  $('continueQuiz').textContent = current === QUESTIONS.length - 1
+    ? '상품 안내 보기'
+    : '다음 문항으로';
+  $('correctAnswer').showModal();
+};
+
+// 해설 확인 후 다음 문항 또는 상품 안내로 이동합니다.
+function continueAfterCorrect() {
+  if (!$('correctAnswer').open) {
+    return;
+  }
+
+  $('correctAnswer').close();
+
   if (current === QUESTIONS.length - 1) {
     finish();
   } else {
@@ -113,7 +128,15 @@ $('next').onclick = () => {
     render();
     $('quiz').focus();
   }
-};
+}
+
+$('continueQuiz').onclick = continueAfterCorrect;
+
+// Esc로 정답 팝업을 닫아도 동일하게 다음 단계로 이동합니다.
+$('correctAnswer').addEventListener('cancel', (event) => {
+  event.preventDefault();
+  continueAfterCorrect();
+});
 
 $('back').onclick = () => {
   if (current > 0) {

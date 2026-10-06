@@ -23,3 +23,12 @@
   font-weight: 800;
   color: var(--green, #006348);
 }
+
+/* 문항별 정답 해설: 줄바꿈과 글자 크기 */
+.correct-explanation {
+  margin: 18px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
